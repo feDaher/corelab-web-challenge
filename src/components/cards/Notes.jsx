@@ -1,16 +1,16 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 import { AiOutlineStar } from 'react-icons/ai'
 import { MdOutlineEdit } from 'react-icons/md'
-import MenuColor from "./MenuColor"
+import MenuColor from './MenuColor'
 import { TiDeleteOutline } from 'react-icons/ti'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useSWRConfig } from 'swr'
-import axios from "axios"
+import axios from 'axios'
 
 const NotesContainer = styled.div`
   width: 390px;
   min-height: 400px;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
   border-radius: 25px;
   position: relative;
@@ -21,21 +21,21 @@ const ContainerStar = styled.div`
   float: right;
   margin: 15px 20px;
   cursor: pointer;
-  color: ${({ isFavorite }) => isFavorite ? 'gold' : '#455A64'};
+  color: ${({ isFavorite }) => (isFavorite ? 'gold' : '#455A64')};
   font-size: 22px;
 `
 const StyledBorder = styled.div`
   width: 390px;
   margin: 15px 0;
   height: 0px;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
 `
 
 const ContainerSimbols = styled.div`
   margin-left: 30px;
   font-size: 20px;
   display: flex;
-  color: #51646E;
+  color: #51646e;
   position: absolute;
   bottom: 0;
   transform: translateY(-60%);
@@ -49,7 +49,7 @@ const MenuDelete = styled.div`
   margin-right: 20px;
   font-size: 25px;
   display: flex;
-  color: #51646E;
+  color: #51646e;
   cursor: pointer;
   position: absolute;
   bottom: 0;
@@ -57,11 +57,11 @@ const MenuDelete = styled.div`
   transform: translateY(-60%);
 `
 const StyledTitle = styled.h4`
-  color: #4F4F4D;
+  color: #4f4f4d;
   margin: 15px 0px 0 25px;
 `
 const StyledText = styled.p`
-  color: #4F4F4D;
+  color: #4f4f4d;
   font-size: 13px;
   line-height: 16px;
   padding: 5px 25px;
@@ -72,10 +72,10 @@ const NewTitle = styled.input`
   margin-left: 5px;
   font-size: 14px;
   font-weight: bold;
-  color: #50656E;
+  color: #50656e;
   background-color: transparent;
   border: none;
-  :focus{
+  :focus {
     outline: none;
   }
   ::placeholder {
@@ -89,17 +89,17 @@ const NewText = styled.textarea`
   min-height: 300px;
   resize: none;
   border: none;
-  color: #4F4F4D;
+  color: #4f4f4d;
   font-size: 13px;
   line-height: 16px;
   padding: 5px 25px 0 5px;
   text-align: justify;
-  :focus{
+  :focus {
     outline: none;
   }
   ::placeholder {
     font-size: 13px;
-    color: #50656E;
+    color: #50656e;
   }
 `
 const NewButton = styled.button`
@@ -118,10 +118,9 @@ const FavoriteStar = styled(AiOutlineStar)`
 const StyledEditIcon = styled(MdOutlineEdit)`
   background-color: ${({ isEditing }) => (isEditing ? '#FFE3B3' : 'inherit')};
   border-radius: ${({ isEditing }) => (isEditing ? '40px' : 'inherit')};
-`;
+`
 
-
-function Notes ({ title, text, id, color }) {
+function Notes({ title, text, id, color }) {
   const { mutate } = useSWRConfig()
   const [editNote, setEditNote] = useState(false)
   const [newTitle, setNewTitle] = useState(title)
@@ -130,22 +129,18 @@ function Notes ({ title, text, id, color }) {
   const [isEditing, setIsEditing] = useState(false)
   const [selectedColor, setSelectedColor] = useState('#FFFFFF')
 
-  const handleFavorite = (id) => {
+  const handleFavorite = () => {
     setIsFavorite(!isFavorite)
   }
   console.log(id)
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/notes`,
-        {
-          data: {
-            id
-          }
+      const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/notes`, {
+        data: {
+          id
         }
-      )
-      if (response.status === 200)
-        mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/notes`)
+      })
+      if (response.status === 200) mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/notes`)
     } catch (err) {
       console.error(err)
     }
@@ -156,10 +151,6 @@ function Notes ({ title, text, id, color }) {
     setNewText(text)
     setEditNote(true)
     setIsEditing(!isEditing)
-  }
-
-  const handleColorSelect = (color) => {
-    setSelectedColor(color)
   }
 
   const handleSubmit = async (event) => {
@@ -183,52 +174,50 @@ function Notes ({ title, text, id, color }) {
     <>
       <NotesContainer color={color}>
         <ContainerStar>
-          <FavoriteStar 
-            onClick={() => handleFavorite(id)} isFavorite={isFavorite} 
-          />
+          <FavoriteStar onClick={() => handleFavorite(id)} isFavorite={isFavorite} />
         </ContainerStar>
         <StyledTitle>
           {!editNote && title}
-            {editNote &&
-              <NewTitle
-                id={id}
-                text={title}
-                type="text"
-                value={newTitle}
-                onChange={event => setNewTitle(event.target.value)}
-              />
-            }
+          {editNote && (
+            <NewTitle
+              id={id}
+              text={title}
+              type="text"
+              value={newTitle}
+              onChange={(event) => setNewTitle(event.target.value)}
+            />
+          )}
         </StyledTitle>
         <StyledBorder />
         <StyledText>
           {!editNote && text}
-            {editNote &&
-              <NewText
-                id={id}
-                text={text}
-                value={newText}
-                onChange={event => setNewText(event.target.value)}
-              />
-            }
+          {editNote && (
+            <NewText
+              id={id}
+              text={text}
+              value={newText}
+              onChange={(event) => setNewText(event.target.value)}
+            />
+          )}
         </StyledText>
         <ContainerSimbols>
           <MenuSimbol>
             <StyledEditIcon onClick={() => handleEdit()} isEditing={isEditing} />
           </MenuSimbol>
           <MenuSimbol>
-              <MenuColor selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
+            <MenuColor selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
           </MenuSimbol>
         </ContainerSimbols>
         <MenuDelete>
-          <TiDeleteOutline  onClick={() => handleDelete(id.id)} />
+          <TiDeleteOutline onClick={() => handleDelete(id.id)} />
         </MenuDelete>
-        {editNote &&
-        <form onSubmit={handleSubmit}>
-          <NewButton type="submit">Salvar</NewButton>
-        </form>
-      }
+        {editNote && (
+          <form onSubmit={handleSubmit}>
+            <NewButton type="submit">Salvar</NewButton>
+          </form>
+        )}
       </NotesContainer>
-  </>
+    </>
   )
 }
 
