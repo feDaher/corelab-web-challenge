@@ -10,7 +10,7 @@ import axios from 'axios'
 const NotesContainer = styled.div`
   width: 390px;
   min-height: 400px;
-  background: #ffffff;
+  background: ${(props) => props.theme.components};
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
   border-radius: 25px;
   position: relative;
@@ -28,14 +28,14 @@ const StyledBorder = styled.div`
   width: 390px;
   margin: 15px 0;
   height: 0px;
-  border: 1px solid #d9d9d9;
+  border: 1px solid ${(props) => props.theme.border};
 `
 
 const ContainerSimbols = styled.div`
   margin-left: 30px;
   font-size: 20px;
   display: flex;
-  color: #51646e;
+  color: ${(props) => props.theme.icons};
   position: absolute;
   bottom: 0;
   transform: translateY(-60%);
@@ -49,7 +49,7 @@ const MenuDelete = styled.div`
   margin-right: 20px;
   font-size: 25px;
   display: flex;
-  color: #51646e;
+  color: ${(props) => props.theme.icons};
   cursor: pointer;
   position: absolute;
   bottom: 0;
@@ -57,11 +57,11 @@ const MenuDelete = styled.div`
   transform: translateY(-60%);
 `
 const StyledTitle = styled.h4`
-  color: #4f4f4d;
+  color: ${(props) => props.theme.black};
   margin: 15px 0px 0 25px;
 `
 const StyledText = styled.p`
-  color: #4f4f4d;
+  color: ${(props) => props.theme.black};
   font-size: 13px;
   line-height: 16px;
   padding: 5px 25px;
@@ -72,7 +72,7 @@ const NewTitle = styled.input`
   margin-left: 5px;
   font-size: 14px;
   font-weight: bold;
-  color: #50656e;
+  color: ${(props) => props.theme.black};
   background-color: transparent;
   border: none;
   :focus {
@@ -89,7 +89,7 @@ const NewText = styled.textarea`
   min-height: 300px;
   resize: none;
   border: none;
-  color: #4f4f4d;
+  color: ${(props) => props.theme.black};
   font-size: 13px;
   line-height: 16px;
   padding: 5px 25px 0 5px;
@@ -99,7 +99,7 @@ const NewText = styled.textarea`
   }
   ::placeholder {
     font-size: 13px;
-    color: #50656e;
+    color: ${(props) => props.theme.input};
   }
 `
 const NewButton = styled.button`

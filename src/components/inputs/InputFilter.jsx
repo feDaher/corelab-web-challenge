@@ -4,8 +4,8 @@ const StyledInput = styled.input`
   box-sizing: border-box;
   max-width: 530px;
   margin: 12px 200px;
-  background: #ffffff;
-  border: 1px solid #d9d9d9;
+  background: ${(props) => props.theme.components};
+  border: 1px solid ${(props) => props.theme.border};
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
   border-radius: 3px;
   padding: 8px 250px 8px 10px;

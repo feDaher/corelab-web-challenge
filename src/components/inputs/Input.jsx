@@ -8,7 +8,7 @@ const StyledCreateNotes = styled.input`
   margin-left: 20px;
   margin-top: 15px;
   font-size: 13px;
-  color: #50656e;
+  color: ${(props) => props.theme.input};
   background-color: transparent;
   border: none;
   :focus {

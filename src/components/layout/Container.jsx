@@ -14,8 +14,8 @@ const StyledDiv = styled.div`
 
 const StyledContainer = styled.div`
   max-width: 530px;
-  background: #ffffff;
-  border: 1px solid #d9d9d9;
+  background: ${(props) => props.theme.components};
+  border: 1px solid ${(props) => props.theme.border};
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
   border-radius: 3px;
   margin-top: 40px;
@@ -48,7 +48,7 @@ const StyledStar = styled.div`
   display: flex;
   float: right;
   margin: 15px;
-  color: #455a64;
+  color: ${(props) => props.theme.star};
   font-size: 22px;
 `
 
@@ -57,7 +57,7 @@ const StyledBorder = styled.div`
   height: 0px;
   left: 443.3px;
   top: 121.79px;
-  border: 1px solid #d9d9d9;
+  border: 1px solid ${(props) => props.theme.border};
   @media (max-width: 770px) {
     left: 25%;
     max-width: 400px;
@@ -74,7 +74,7 @@ const CreateNotesInput = styled.input`
   min-height: 60px;
   margin-left: 20px;
   font-size: 13px;
-  color: #50656e;
+  color: ${(props) => props.theme.input};
   background-color: transparent;
   border: none;
   :focus {
