@@ -10,6 +10,7 @@ import axios from 'axios'
 const NotesContainer = styled.div`
   width: 390px;
   min-height: 400px;
+  margin-bottom: 25px;
   background-color: ${({ color }) => color};
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
   border-radius: 25px;
@@ -120,14 +121,13 @@ const StyledEditIcon = styled(MdOutlineEdit)`
   border-radius: ${({ isEditing }) => (isEditing ? '40px' : 'inherit')};
 `
 
-function Notes({ title, text, id, notes, setNotes }) {
+function Notes({ title, text, id, isFavorite, onFavorite, color }) {
   const { mutate } = useSWRConfig()
   const [editNote, setEditNote] = useState(false)
   const [newTitle, setNewTitle] = useState(title)
   const [newText, setNewText] = useState(text)
-  const [isFavorite, setIsFavorite] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
-  const [selectedColor, setSelectedColor] = useState('#FFFFFF')
+  const [selectedColor, setSelectedColor] = useState(color || '#FFFFFF')
 
   const handleDelete = async () => {
     try {
@@ -166,22 +166,15 @@ function Notes({ title, text, id, notes, setNotes }) {
       console.error(err)
     }
   }
-  const handleFavorite = (id) => {
-    setIsFavorite(!isFavorite)
-    const noteIndex = notes?.findIndex((note) => note.id === id)
-    if (noteIndex > -1) {
-      const newNotes = [...notes]
-      const [noteToMove] = newNotes.splice(noteIndex, 1)
-      newNotes.unshift(noteToMove)
-      setNotes(newNotes)
-      console.log(newNotes)
-    }
+  const handleFavoriteClick = () => {
+    onFavorite()
   }
+
   return (
     <>
       <NotesContainer color={selectedColor}>
         <ContainerStar>
-          <FavoriteStar onClick={() => handleFavorite(id)} isFavorite={isFavorite} />
+          <FavoriteStar onClick={handleFavoriteClick} isFavorite={isFavorite}></FavoriteStar>
         </ContainerStar>
         <StyledTitle>
           {!editNote && title}
@@ -212,7 +205,7 @@ function Notes({ title, text, id, notes, setNotes }) {
             <StyledEditIcon onClick={() => handleEdit()} isEditing={isEditing} />
           </MenuSimbol>
           <MenuSimbol>
-            <MenuColor selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
+            <MenuColor id={id} selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
           </MenuSimbol>
         </ContainerSimbols>
         <MenuDelete>

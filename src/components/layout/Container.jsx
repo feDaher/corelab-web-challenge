@@ -82,17 +82,34 @@ const CreateNotesInput = styled.input`
   }
 `
 
+const ColorInput = styled.input`
+  display: none;
+  width: 480px;
+  line-height: 30px;
+  min-height: 60px;
+  margin-left: 20px;
+  font-size: 13px;
+  color: ${(props) => props.theme.input};
+  background-color: transparent;
+  border: none;
+  :focus {
+    outline: none;
+  }
+`
+
 function Container() {
   const { mutate } = useSWRConfig()
   const [title, setTitle] = useState('')
   const [text, setText] = useState('')
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [color, setColor] = useState('#ffffff')
 
   const handleForm = async () => {
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/notes`, {
         title: title,
-        text: text
+        text: text,
+        color: color
       })
       if (response.status === 200) {
         mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/notes`)
@@ -106,6 +123,7 @@ function Container() {
   const resetForm = () => {
     setTitle('')
     setText('')
+    setColor('')
   }
 
   return (
@@ -124,6 +142,13 @@ function Container() {
               <AiOutlineStar />
             </StyledStar>
             <StyledBorder />
+            <ColorInput
+              placeholder="cor padrao"
+              value={color}
+              onChange={({ target }) => {
+                setColor(target.value)
+              }}
+            />
             <CreateNotesInput
               placeholder="Criar nota..."
               key={formSubmitted}
