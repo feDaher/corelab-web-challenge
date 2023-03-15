@@ -14,7 +14,7 @@ const NotesContainer = styled.div`
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
   border-radius: 25px;
   position: relative;
-  height: 100%;
+  z-index: 0;
 `
 
 const ContainerStar = styled.div`

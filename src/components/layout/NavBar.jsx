@@ -1,10 +1,5 @@
 import styled from 'styled-components'
 
-const StyledNav = styled.nav`
-  height: 57px;
-  background-color: ${(props) => props.theme.components};
-  box-shadow: 0px 1px 7px rgba(149, 149, 149, 0.25);
-`
 const StyledSpan = styled.span`
   position: absolute;
   line-height: 57px;
@@ -25,18 +20,12 @@ const StyledImg = styled.div`
   margin: 10px 50px;
 `
 
-const StyledDivInput = styled.div`
-  display: flex;
-  position: relative;
-`
-
 function NavBar() {
   return (
-    <StyledNav>
-      <StyledImg></StyledImg>
+    <>
+      <StyledImg />
       <StyledSpan>CoreNotes</StyledSpan>
-      <StyledDivInput></StyledDivInput>
-    </StyledNav>
+    </>
   )
 }
 

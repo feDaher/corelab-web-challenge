@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { AiOutlineStar } from 'react-icons/ai'
 import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useSWRConfig } from 'swr'
 
 const StyledDiv = styled.div`
@@ -103,14 +103,11 @@ function Container() {
     }
   }
 
-  useEffect(() => {
-    if (formSubmitted) {
-      setTitle('')
-      setText('')
-      setFormSubmitted(false)
-    }
-  }, [formSubmitted])
-  console.log(formSubmitted)
+  const resetForm = () => {
+    setTitle('')
+    setText('')
+  }
+
   return (
     <>
       <StyledDiv>
@@ -129,13 +126,15 @@ function Container() {
             <StyledBorder />
             <CreateNotesInput
               placeholder="Criar nota..."
+              key={formSubmitted}
               value={text}
               onChange={({ target }) => {
                 setText(target.value)
               }}
               onKeyDown={(event) => {
-                if (event.key === 'Enter' && !event.shiftKey) {
+                if (event.key === 'Enter') {
                   handleForm(event)
+                  resetForm()
                 }
               }}
             />

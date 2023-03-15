@@ -7,24 +7,35 @@ const StyledEditColor = styled(RiPaintFill)`
   border-radius: ${({ color }) => (color ? '40px' : 'inherit')};
 `
 const StyledMenu = styled.div`
-  min-width: 450px;
+  width: 430px;
   height: 45px;
-  background-color: red;
   position: absolute;
-  background: #ffffff;
+  background: ${(props) => props.theme.components};
   border: 1px solid #d9d9d9;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
   border-radius: 9px;
   display: ${(props) => (props.show ? 'block' : 'none')};
-  z-index: 9999;
+  transform: translateX(-20%);
+  @media (max-width: 745px) {
+    width: 220px;
+    height: 80px;
+    transform: translateY(-10%);
+  }
 `
 const StyledContainerMenu = styled.div`
-  position: absolute;
+  width: 100%;
+  position: relative;
+  z-index: 1;
 `
 const StyledOption = styled.div`
+  position: absolute;
   display: flex;
   margin: 7px;
-  gap: 10px;
+  gap: 5px;
+  flex-wrap: wrap;
+  z-index: 2;
+  @media (max-width: 745px) {
+  }
 `
 const OptionColor = styled.div`
   border-radius: 50px;

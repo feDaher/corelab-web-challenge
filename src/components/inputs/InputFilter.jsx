@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const StyledInput = styled.input`
   box-sizing: border-box;
-  max-width: 530px;
+  width: 530px;
   margin: 12px 200px;
   background: ${(props) => props.theme.components};
   border: 1px solid ${(props) => props.theme.border};
@@ -18,12 +18,12 @@ const StyledInput = styled.input`
     outline: none;
   }
   background-image: url('https://img.freepik.com/vetores-premium/icone-de-pesquisa-simbolo-da-lupa-icone-de-contorno_543062-139.jpg?w=740');
-  background-position: right;
+  background-position: 98%;
   background-repeat: no-repeat;
   background-size: 18px;
 
   @media (max-width: 700px) {
-    max-width: 300px;
+    max-width: 700px;
     padding-right: 30px;
     ::placeholder {
       font-size: 10px;
