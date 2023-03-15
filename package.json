@@ -1,0 +1,49 @@
+{
+  "name": "desafiocorelab",
+  "version": "1.0.0",
+  "description": "criar um aplicativo da Web que permita aos usuários criar e gerenciar suas listas de tarefas",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feDaher/corelab-web-challenge.git"
+  },
+  "author": "Felipe Daher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/feDaher/corelab-web-challenge/issues"
+  },
+  "homepage": "https://github.com/feDaher/corelab-web-challenge#readme",
+  "dependencies": {
+    "@hookform/resolvers": "^2.9.11",
+    "axios": "^0.26.0",
+    "bcryptjs": "^2.4.3",
+    "iron-session": "^6.0.5",
+    "joi": "^17.6.0",
+    "joi-objectid": "^4.0.2",
+    "moment": "^2.29.1",
+    "mongoose": "^6.2.4",
+    "next": "^13.2.4",
+    "next-connect": "^0.12.2",
+    "next-joi": "^2.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.5",
+    "react-icons": "^4.8.0",
+    "styled-components": "^5.3.3",
+    "swr": "^1.2.2"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^2.0.6",
+    "eslint": "^8.15.0",
+    "eslint-config-next": "^12.1.6",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-react-hooks": "^4.5.0"
+  }
+}
