@@ -10,7 +10,7 @@ import axios from 'axios'
 const NotesContainer = styled.div`
   width: 390px;
   min-height: 400px;
-  background: ${(props) => props.theme.components};
+  background-color: ${({ color }) => color};
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
   border-radius: 25px;
   position: relative;
@@ -120,7 +120,7 @@ const StyledEditIcon = styled(MdOutlineEdit)`
   border-radius: ${({ isEditing }) => (isEditing ? '40px' : 'inherit')};
 `
 
-function Notes({ title, text, id, color }) {
+function Notes({ title, text, id, notes, setNotes }) {
   const { mutate } = useSWRConfig()
   const [editNote, setEditNote] = useState(false)
   const [newTitle, setNewTitle] = useState(title)
@@ -129,10 +129,6 @@ function Notes({ title, text, id, color }) {
   const [isEditing, setIsEditing] = useState(false)
   const [selectedColor, setSelectedColor] = useState('#FFFFFF')
 
-  const handleFavorite = () => {
-    setIsFavorite(!isFavorite)
-  }
-  console.log(id)
   const handleDelete = async () => {
     try {
       const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/notes`, {
@@ -170,9 +166,20 @@ function Notes({ title, text, id, color }) {
       console.error(err)
     }
   }
+  const handleFavorite = (id) => {
+    setIsFavorite(!isFavorite)
+    const noteIndex = notes?.findIndex((note) => note.id === id)
+    if (noteIndex > -1) {
+      const newNotes = [...notes]
+      const [noteToMove] = newNotes.splice(noteIndex, 1)
+      newNotes.unshift(noteToMove)
+      setNotes(newNotes)
+      console.log(newNotes)
+    }
+  }
   return (
     <>
-      <NotesContainer color={color}>
+      <NotesContainer color={selectedColor}>
         <ContainerStar>
           <FavoriteStar onClick={() => handleFavorite(id)} isFavorite={isFavorite} />
         </ContainerStar>
