@@ -68,7 +68,6 @@ const MenuColor = ({ setSelectedColor, id }) => {
 
   const handleColorSelect = async (color) => {
     try {
-      console.log(color, id)
       await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/api/notes/`, { color, id })
       setSelectedColor(color)
     } catch (err) {

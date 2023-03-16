@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import styled from 'styled-components'
 import { AiOutlineStar } from 'react-icons/ai'
 import { MdOutlineEdit } from 'react-icons/md'
@@ -72,7 +73,7 @@ const StyledText = styled.p`
   text-align: justify;
 `
 const NewTitle = styled.input`
-  width: 300px;
+  width: 200px;
   margin-left: 5px;
   font-size: 14px;
   font-weight: bold;
@@ -90,7 +91,7 @@ const NewTitle = styled.input`
 `
 const NewText = styled.textarea`
   width: 305px;
-  min-height: 300px;
+  min-height: 200px;
   resize: none;
   border: none;
   background-color: transparent;
@@ -107,17 +108,7 @@ const NewText = styled.textarea`
     color: ${(props) => props.theme.input};
   }
 `
-const NewButton = styled.button`
-  padding: 5px 10px;
-  display: flex;
-  float: right;
-  border: solid 1px grey;
-  background-color: transparent;
-  cursor: pointer;
-  margin-bottom: 50px;
-  margin-right: 20px;
-  font-family: 'Inter';
-`
+
 const FavoriteStar = styled(AiOutlineStar)`
   color: ${({ isFavorite }) => (isFavorite ? 'gold' : 'inherit')};
 `
@@ -190,20 +181,32 @@ function Notes({ title, text, id, isFavorite, onFavorite, color }) {
               type="text"
               value={newTitle}
               onChange={(event) => setNewTitle(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') {
+                  handleSubmit(event)
+                }
+              }}
             />
           )}
         </StyledTitle>
         <StyledBorder />
         <StyledText>
-          {!editNote && text}
-          {editNote && (
-            <NewText
-              id={id}
-              text={text}
-              value={newText}
-              onChange={(event) => setNewText(event.target.value)}
-            />
-          )}
+          <form onSubmit={handleSubmit}>
+            {!editNote && text}
+            {editNote && (
+              <NewText
+                id={id}
+                text={text}
+                value={newText}
+                onChange={(event) => setNewText(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') {
+                    handleSubmit(event)
+                  }
+                }}
+              />
+            )}
+          </form>
         </StyledText>
         <ContainerSimbols>
           <MenuSimbol>
@@ -216,11 +219,6 @@ function Notes({ title, text, id, isFavorite, onFavorite, color }) {
         <MenuDelete>
           <TiDeleteOutline onClick={() => handleDelete(id.id)} />
         </MenuDelete>
-        {editNote && (
-          <form onSubmit={handleSubmit}>
-            <NewButton type="submit">Salvar</NewButton>
-          </form>
-        )}
       </NotesContainer>
     </>
   )

@@ -4,8 +4,8 @@ import joiObjectid from 'joi-objectid'
 Joi.objectId = joiObjectid(Joi)
 
 export const createNoteSchema = Joi.object({
-  title: Joi.string().required().max(30),
-  text: Joi.string().required().max(256),
+  title: Joi.string().required().max(100),
+  text: Joi.string().required().max(512),
   color: Joi.string().required()
 })
 
@@ -15,8 +15,8 @@ export const deleteNoteSchema = Joi.object({
 
 export const editNoteSchema = Joi.object({
   id: Joi.objectId().required(),
-  title: Joi.string().required().max(30),
-  text: Joi.string().required().max(256),
+  title: Joi.string().required().max(100),
+  text: Joi.string().required().max(512),
   color: Joi.string()
 })
 
