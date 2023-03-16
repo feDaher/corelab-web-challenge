@@ -27,6 +27,10 @@ const StyledContainer = styled.div`
     max-width: 350px;
     border-radius: 25px;
   }
+  @media (max-width: 380px) {
+    max-width: 300px;
+    border-radius: 15px;
+  }
 `
 const StyledInputTitle = styled.input`
   margin: 15px 0;
@@ -43,6 +47,9 @@ const StyledInputTitle = styled.input`
   :focus {
     outline: none;
   }
+  @media (max-width: 380px) {
+    width: 200px;
+  }
 `
 const StyledStar = styled.div`
   display: flex;
@@ -50,6 +57,9 @@ const StyledStar = styled.div`
   margin: 15px;
   color: ${(props) => props.theme.star};
   font-size: 22px;
+  @media (max-width: 380px) {
+    margin-top: 15px;
+  }
 `
 
 const StyledBorder = styled.div`
@@ -67,6 +77,9 @@ const StyledBorder = styled.div`
     max-width: 350px;
     border-radius: 25px;
   }
+  @media (max-width: 380px) {
+    max-width: 300px;
+  }
 `
 const CreateNotesInput = styled.input`
   width: 480px;
@@ -79,6 +92,9 @@ const CreateNotesInput = styled.input`
   border: none;
   :focus {
     outline: none;
+  }
+  @media (max-width: 380px) {
+    max-height: 50px;
   }
 `
 

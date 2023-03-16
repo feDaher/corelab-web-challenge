@@ -17,7 +17,7 @@ const StyledInput = styled.input`
   :focus {
     outline: none;
   }
-  background-image: url('https://img.freepik.com/vetores-premium/icone-de-pesquisa-simbolo-da-lupa-icone-de-contorno_543062-139.jpg?w=740');
+  background-image: url('/icon.png');
   background-position: 98%;
   background-repeat: no-repeat;
   background-size: 18px;
@@ -25,6 +25,20 @@ const StyledInput = styled.input`
   @media (max-width: 700px) {
     max-width: 700px;
     padding-right: 30px;
+    ::placeholder {
+      font-size: 10px;
+    }
+  }
+  @media (max-width: 400px) {
+    max-width: 150px;
+    padding-right: 5px;
+    ::placeholder {
+      font-size: 10px;
+    }
+  }
+  @media (max-width: 350px) {
+    max-width: 100px;
+    padding-right: 5px;
     ::placeholder {
       font-size: 10px;
     }

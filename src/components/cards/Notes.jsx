@@ -16,6 +16,9 @@ const NotesContainer = styled.div`
   border-radius: 25px;
   position: relative;
   z-index: 0;
+  @media (max-width: 380px) {
+    width: 300px;
+  }
 `
 
 const ContainerStar = styled.div`
@@ -90,6 +93,7 @@ const NewText = styled.textarea`
   min-height: 300px;
   resize: none;
   border: none;
+  background-color: transparent;
   color: ${(props) => props.theme.black};
   font-size: 13px;
   line-height: 16px;
@@ -107,7 +111,8 @@ const NewButton = styled.button`
   padding: 5px 10px;
   display: flex;
   float: right;
-  border: none;
+  border: solid 1px grey;
+  background-color: transparent;
   cursor: pointer;
   margin-bottom: 50px;
   margin-right: 20px;

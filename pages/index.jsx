@@ -17,7 +17,7 @@ const NotesContainer = styled.div`
   align-items: center;
   margin-top: 50px;
   gap: 30px;
-  @media (max-width: 1250px) {
+  @media (max-width: 1200px) {
     grid-template-columns: auto auto;
   }
   @media (max-width: 850px) {
