@@ -1,85 +1,30 @@
 ## Desafio Corelab:
 
-Você tem a tarefa de criar um aplicativo da Web que permita aos usuários criar e gerenciar suas listas de tarefas. O aplicativo deve consistir em uma página da Web responsiva construída em React e uma API construída em Node.js para armazenar e gerenciar as listas de tarefas.
+"Você tem a tarefa de criar um aplicativo da Web que permita aos usuários criar e gerenciar suas listas de tarefas. O aplicativo deve consistir em uma página da Web responsiva construída em React e uma API construída em Node.js para armazenar e gerenciar as listas de tarefas."
 
+## Projeto Finalizado:
 
-### Os repositórios
-O [repositório frontend](https://github.com/corelabbr/corelab-web-challenge)
+Utilizei para desevolver o codigo o ReactJS, NodeJS, NextJS e o banco de dados MongoDB, e várias bibliotecas modernas para a otimização do código, e utlizei também o Styled Components como pré processador de CSS.
+Executei todas as funcionalidades propostas da aplicação, de maneira fiel ao mockup e responsiva, tratando para todos os dispositvos mobile:
 
-Se você se sentir mais confortável, pode escolher outro framework React e nos mostrar suas habilidades.
+* Os usuarios tem a capacidade de criar, ler, atualizar e excluir os itens de tarefas de forma dinâmica;
+* Favorita-los;
+* E esses favoritos seraão exibidos primariamente, no topo da aplicação;
+* Poderá definir as cores para cada item;
+* Pesquisar e filtrar os itens de tarefa;
 
-O [repositório de backend](https://github.com/corelabbr/corelab-api-challenge)
+A API para o back-end foi feita em Node.js, utilizando o banco de dados MongoDB, fiz a aplicação do schema, models, services e middlewares, em Next.js e moongose. Back-end bem estruturado e otimizado.
 
-Se você se sentir mais confortável, pode escolher outro framework Node JS e nos mostrar suas habilidades.
+Todo o front-end foi feito a base das ferramentas e bibliotecas modernas para melhor otimização do código, qualidade, formato e desempenho.
 
-### O layout
-Abra o [mockup do layout](https://www.figma.com/file/sQrUVHTlyogq3qGdkqGTXN/mockup?node-id=7%3A2&t=ANTOTiqjqGWYuoUr-0) na versão desktop e mobile e siga este design o máximo possível.
+* Design fiel ao mockup apresentado para base do projeto, sendo TODO responsivo para qualquer tela e aparelho mobile, tendo um nav com um input onde todas as pesquisas, filtros funcionais, alinhados e responsivos.
+* Container onde o usuario pode escrever o título da tarefa e abaixo criar seu item de tarefa submetendo um form, ao apertar enter, sem mesmo ter que utilizar um 'button', salvando diretamente no banco de dados e sendo atualizado na tela de forma dinâmica e automática, pelo swr.
+* Os 'Notes' serão exibidos todos alinhados e bem distruibuidos harmonicamente na tela, sendo fiel ao projeto, nele o usuário pode favorita-lo, onde o item favorito irá para o top da tela em ordem primária, colorindo o item 'star' e tudo dinâmico, nele também contém icones para fazer a edição do conteudo, das cores e a exclusão da tarefa caso queira.
+* Ao clicar no item editar a nota, o mesmo irá sinalizar marcando com uma cor do icone, dando a possibilidade de edição indiviual do item de tarefa, ou seja, podendo editar somente o título ou a descrição da tarefa ou também ambos, atualizando de forma dinâmica ao aperter enter sem a necessidade de um botão e atualizando no banco de dados e na tela do usuário instantaneamente.
+* Clicando no icone 'paint', edição de cores, abrirá um menu de cores pré-definadas no projeto, que foi reproduzida fielamente, onde o usário clica e o item de tarefa recebe a cor dinamicamente, trocando a propriedade color no back-end também, para ficar salvo de acordo com o desejo do usuário, o container do MenuColor está responsivo e adaptado para todos os dispositvos, conforme o projeto.
+* No icone de excluir, o usuario tem a possibilidade da exclusão do item de tarefa, ao clicar o mesmo, será excluído instantaneamente, tanto no back-end como no front.
+* Item Star, de favoritos: Favorita o item de tarefa, movendo o mesmo para o topo, na posição primário da aplicação, colorindo também o icone de dourado, separando favoritos de nao favorites, e com codigo de facil leitura.
 
+Trabalhei com tipagens e interfaces corretas, utilizei as regras eslint e configurações do prettier, todos os componentes e containers feitos de maneira otimizadas, com codigo organizado de fácil leitura. A aplicação está com a prática CI/CD de integração e entrega contínua.
 
-### O aplicativo deve ter as seguintes funcionalidades:
-
-1. Os usuários devem ser capazes de criar, ler, atualizar e excluir itens de tarefas usando a API.
-2. Os usuários devem poder marcar um item como favorito.
-3. Os usuários devem poder definir uma cor para cada item de tarefa.
-4. O front-end do React deve exibir a lista de tarefas do usuário de maneira responsiva e visualmente atraente, com a capacidade de filtrar por itens e cores favoritos.
-5. Os itens favoritos devem ser exibidos no topo da lista.
-
-### Requerimentos técnicos:
-1. A API de back-end deve ser construída na estrutura Node.js e usar um banco de dados de sua escolha (por exemplo, MongoDB, PostgreSQL, etc.).
-2. O front-end deve ser construído em React e usar ferramentas modernas de desenvolvimento web e melhores práticas.
-3. O aplicativo deve ser responsivo e visualmente atraente.
-
-### Entregáveis:
-1. Um link para um repositório GitHub contendo o código-fonte completo do projeto.
-2. Uma descrição por escrito de como configurar e executar o aplicativo localmente.
-
-
-### Critério de avaliação:
-1. Qualidade do Código
-2. Formato do código
-3. Desempenho do código
-4. Design de front-end
-5. Se o seu código é fácil de entender
-6. Abordagem Mobile First
-7. Responsabilidade do Código
-8. Trabalho de Funcionalidades
-9. Capacidade de resposta
-10. O aplicativo atende aos requisitos de funcionalidade listados acima?
-11. O código está bem organizado, fácil de ler e bem documentado?
-12. As ferramentas modernas de desenvolvimento da Web e as melhores práticas são usadas?
-13. O aplicativo é visualmente atraente e responsivo?
-
-### Backend
-Repositório:
-1. Node: ^16.15.0
-2. NPM: ^8.5.5
-3. Framework: Adonis TS ou qualquer outro framework de node que você conheça.
-4. Banco de dados: Escolha o seu, você pode até salvar na memória.
-
-### Frontend
-Repositório:
-1. Node: ^16.15.0
-2. NPM: ^8.5.5
-3. Framework: React TS
-4. Sass ou outro pré-processador
-
-### Quer nos impressionar ainda mais?
-Se você se sentir confortável e quiser nos impressionar ainda mais, você pode fazer o seguinte:
-
-1. Trabalhe nas tipagens e interfaces corretas
-2. Trabalhe nas regras do eslint
-3. Trabalhe com configuração do prettier
-4. Trabalhe em containers docker
-5. Trabalhe em testes
-6. Trabalhe em CI/CD
-
-### O que fazer quando terminar?
-
-Crie um arquivo PULL_REQUEST.md onde você irá descrever o que você fez e como com o máximo de detalhes possível. Sinta-se à vontade para adicionar vídeos para uma melhor explicação.
-
-Crie uma nova solicitação pull usando o mesmo nome de ramificação para back-end e front-end
-
-Envie-nos os pull requests e pronto!
-
-
-#### Boa sorte! O céu é o limite 🚀
+## Obrigado!

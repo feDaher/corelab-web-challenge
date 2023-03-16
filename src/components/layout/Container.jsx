@@ -139,7 +139,6 @@ function Container() {
   const resetForm = () => {
     setTitle('')
     setText('')
-    setColor('')
   }
 
   return (
