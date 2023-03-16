@@ -27,4 +27,6 @@ Todo o front-end foi feito a base das ferramentas e bibliotecas modernas para me
 
 Trabalhei com tipagens e interfaces corretas, utilizei as regras eslint e configurações do prettier, todos os componentes e containers feitos de maneira otimizadas, com codigo organizado de fácil leitura. A aplicação está com a prática CI/CD de integração e entrega contínua.
 
+Deploy feito na vercel: https://corelab-challenge-corenotes-4kw2h7bwi-fedaher.vercel.app/
+
 ## Obrigado!
