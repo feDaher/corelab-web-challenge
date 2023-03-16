@@ -112,6 +112,13 @@ const ColorInput = styled.input`
     outline: none;
   }
 `
+const SpanError = styled.span`
+  font-size: 12px;
+  color: red;
+  margin: 3px 15px;
+  position: absolute;
+  bottom: 0;
+`
 
 function Container() {
   const { mutate } = useSWRConfig()
@@ -119,8 +126,16 @@ function Container() {
   const [text, setText] = useState('')
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [color, setColor] = useState('#ffffff')
+  const [error, setError] = useState('')
 
-  const handleForm = async () => {
+  const handleForm = async (event) => {
+    event.preventDefault()
+
+    if (title.trim() === '' || text.trim() === '') {
+      setError('Por favor, preencha os campos de título e texto.')
+      return
+    }
+
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/notes`, {
         title: title,
@@ -135,7 +150,6 @@ function Container() {
       console.error(error)
     }
   }
-
   const resetForm = () => {
     setTitle('')
     setText('')
@@ -151,6 +165,13 @@ function Container() {
               value={title}
               onChange={({ target }) => {
                 setTitle(target.value)
+                setError('')
+              }}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') {
+                  handleForm(event)
+                  resetForm()
+                }
               }}
             />
             <StyledStar>
@@ -164,12 +185,14 @@ function Container() {
                 setColor(target.value)
               }}
             />
+            <SpanError>{error}</SpanError>
             <CreateNotesInput
               placeholder="Criar nota..."
               key={formSubmitted}
               value={text}
               onChange={({ target }) => {
                 setText(target.value)
+                setError('')
               }}
               onKeyDown={(event) => {
                 if (event.key === 'Enter') {

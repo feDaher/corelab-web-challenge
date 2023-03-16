@@ -40,7 +40,7 @@ const StyledInput = styled.input`
     max-width: 100px;
     padding-right: 5px;
     ::placeholder {
-      font-size: 10px;
+      font-size: 9px;
     }
   }
 `

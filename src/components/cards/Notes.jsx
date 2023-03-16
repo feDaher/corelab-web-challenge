@@ -34,6 +34,9 @@ const StyledBorder = styled.div`
   margin: 15px 0;
   height: 0px;
   border: 1px solid ${(props) => props.theme.border};
+  @media (max-width: 380px) {
+    width: 300px;
+  }
 `
 
 const ContainerSimbols = styled.div`
