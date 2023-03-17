@@ -9,7 +9,7 @@ Executei todas as funcionalidades propostas da aplicação, de maneira fiel ao m
 
 * Os usuarios tem a capacidade de criar, ler, atualizar e excluir os itens de tarefas de forma dinâmica;
 * Favorita-los;
-* E esses favoritos seraão exibidos primariamente, no topo da aplicação;
+* E esses favoritos serão exibidos primariamente, no topo da aplicação;
 * Poderá definir as cores para cada item;
 * Pesquisar e filtrar os itens de tarefa;
 
@@ -27,6 +27,6 @@ Todo o front-end foi feito a base das ferramentas e bibliotecas modernas para me
 
 Trabalhei com tipagens e interfaces corretas, utilizei as regras eslint e configurações do prettier, todos os componentes e containers feitos de maneira otimizadas, com codigo organizado de fácil leitura. A aplicação está com a prática CI/CD de integração e entrega contínua.
 
-Deploy feito na vercel: https://corelab-challenge-corenotes-4kw2h7bwi-fedaher.vercel.app/
+Deploy feito na vercel: https://corelab-challenge-corenotes-git-main-fedaher.vercel.app/
 
 ## Obrigado!
