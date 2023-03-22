@@ -3,7 +3,6 @@ import NavBar from '../src/components/layout/NavBar'
 import Container from '../src/components/layout/Container'
 import Notes from '../src/components/cards/Notes'
 import InputFilter from '../src/components/inputs/InputFilter'
-import colorNameList from 'color-name-list'
 import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import useSWR from 'swr'
@@ -68,13 +67,35 @@ function HomePage() {
     }
   }, [data])
 
+  const updatedColors = [
+    { hex: '#bae2ff', name: 'azul' },
+    { hex: '#b9ffdd', name: 'verde' },
+    { hex: '#ffe8ac', name: 'amarelo' },
+    { hex: '#ffffff', name: 'branco' },
+    { hex: '#ffcab9', name: 'rosa' },
+    { hex: '#f99494', name: 'rosa' },
+    { hex: '#9dd6ff', name: 'azul' },
+    { hex: '#eca2ff', name: 'roxo' },
+    { hex: '#daff8B', name: 'verde' },
+    { hex: '#ffa285', name: 'laranja' },
+    { hex: '#cdcdcd', name: 'cinza' },
+    { hex: '#979797', name: 'cinza' },
+    { hex: '#a99a7c', name: 'marrom' }
+  ]
+
+  const updatedColorNameList = updatedColors.reduce((acc, curr) => {
+    acc[curr.hex] = curr.name
+    return acc
+  }, {})
+
   const handleFilterChange = (event) => {
     const filterValue = event.target.value.toLowerCase()
     setFilteredNotes(filterValue)
     let filtered = notes.filter((item) => {
       const itemColor = item.color.toLocaleLowerCase() || ''
       const hexColor = /^#[0-9A-F]{6}$/i.test(itemColor) ? itemColor : ''
-      const colorName = colorNameList.find((c) => c.hex === hexColor)?.name || ''
+      const colorName = updatedColorNameList[hexColor] || ''
+      console.log(colorName)
 
       return (
         item.title?.toLowerCase().includes(filterValue) ||
