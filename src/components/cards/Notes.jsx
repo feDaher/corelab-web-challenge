@@ -30,12 +30,12 @@ const ContainerStar = styled.div`
   font-size: 22px;
 `
 const StyledBorder = styled.div`
-  width: 390px;
+  width: 389px;
   margin: 15px 0;
   height: 0px;
-  border: 1px solid ${(props) => props.theme.border};
+  border: 0.5px solid ${(props) => props.theme.border};
   @media (max-width: 380px) {
-    width: 300px;
+    width: 299px;
   }
 `
 
