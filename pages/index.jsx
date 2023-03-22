@@ -76,7 +76,7 @@ function HomePage() {
     { hex: '#f99494', name: 'rosa' },
     { hex: '#9dd6ff', name: 'azul' },
     { hex: '#eca2ff', name: 'roxo' },
-    { hex: '#daff8B', name: 'verde' },
+    { hex: '#daff8b', name: 'verde' },
     { hex: '#ffa285', name: 'laranja' },
     { hex: '#cdcdcd', name: 'cinza' },
     { hex: '#979797', name: 'cinza' },
