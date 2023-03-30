@@ -71,12 +71,12 @@ const MenuColor = ({ setSelectedColor, id }) => {
 
   const handleColorSelect = async (color) => {
     try {
-      const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/api/notes/`, {
+      await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/api/notes/`, {
         color,
         id
       })
       setSelectedColor(color)
-      if (response === 200) {
+      {
         mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/notes`)
       }
     } catch (err) {

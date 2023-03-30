@@ -95,7 +95,6 @@ function HomePage() {
       const itemColor = item.color.toLocaleLowerCase() || ''
       const hexColor = /^#[0-9A-F]{6}$/i.test(itemColor) ? itemColor : ''
       const colorName = updatedColorNameList[hexColor] || ''
-      console.log(colorName)
 
       return (
         item.title?.toLowerCase().includes(filterValue) ||
