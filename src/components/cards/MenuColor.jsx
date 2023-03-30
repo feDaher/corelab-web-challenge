@@ -2,6 +2,8 @@ import { RiPaintFill } from 'react-icons/ri'
 import { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
+import { useSWRConfig } from 'swr'
+
 const StyledEditColor = styled(RiPaintFill)`
   background-color: ${({ color }) => (color ? '#FFE3B3' : 'inherit')};
   border-radius: ${({ color }) => (color ? '40px' : 'inherit')};
@@ -45,6 +47,7 @@ const OptionColor = styled.div`
 `
 
 const MenuColor = ({ setSelectedColor, id }) => {
+  const { mutate } = useSWRConfig()
   const [color, setColor] = useState(false)
   const [show, setShow] = useState(false)
   const menuRef = useRef(null)
@@ -68,8 +71,14 @@ const MenuColor = ({ setSelectedColor, id }) => {
 
   const handleColorSelect = async (color) => {
     try {
-      await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/api/notes/`, { color, id })
+      const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/api/notes/`, {
+        color,
+        id
+      })
       setSelectedColor(color)
+      if (response === 200) {
+        mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/notes`)
+      }
     } catch (err) {
       console.log(err)
     }
