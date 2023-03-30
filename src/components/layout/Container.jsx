@@ -142,7 +142,8 @@ function Container() {
         text: text,
         color: color
       })
-      if (response.status === 200) {
+      console.log(response)
+      if (response.status === 201) {
         mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/notes`)
         setFormSubmitted(true)
       }
