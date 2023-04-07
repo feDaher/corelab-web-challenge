@@ -31,7 +31,7 @@ const NotesNotFavorites = styled.div`
   margin: 0px 30px;
   position: relative;
   align-items: flex-end;
-  margin-top: 50px;
+  margin: 30px;
   gap: 30px;
 `
 const StyledDiv = styled.div`
@@ -51,6 +51,18 @@ const StyleNotFavorite = styled.span`
   margin-top: 30px;
   font-size: 14px;
   font-weight: bold;
+`
+const Button = styled.button`
+  padding: 10px 30px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color: white;
+  font-weight: bold;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+  :hover {
+    background-color: transparent;
+  }
 `
 const fetcher = (url) => axios.get(url).then((res) => res.data)
 
@@ -171,7 +183,7 @@ function HomePage() {
               }}
             />
           ))}
-        <button onClick={fetchMoreNotes}>Carregar</button>
+        <Button onClick={fetchMoreNotes}>Carregar mais tarefas</Button>
       </NotesNotFavorites>
     </>
   )
