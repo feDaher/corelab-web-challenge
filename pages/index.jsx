@@ -6,7 +6,7 @@ import InputFilter from '../src/components/inputs/InputFilter'
 import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import useSWR from 'swr'
-import InfiniteScroll from '../src/components/infiniteScroll/InfiniteScroll'
+//import InfiniteScroll from '../src/components/infiniteScroll/InfiniteScroll'
 
 const NotesFavorites = styled.div`
   display: flex;
