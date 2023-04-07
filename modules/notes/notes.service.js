@@ -9,8 +9,9 @@ export const createNote = async (body) => {
   })
 }
 
-export const getNotes = async () => {
-  return await Note.find().sort({ createdAt: -1 })
+export const getNotes = async (page, perPage) => {
+  const notesToSkip = (page - 1) * perPage
+  return await Note.find().sort({ createdAt: -1 }).skip(notesToSkip).limit(perPage)
 }
 
 export const deleteNote = async (id) => {

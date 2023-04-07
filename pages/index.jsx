@@ -6,6 +6,7 @@ import InputFilter from '../src/components/inputs/InputFilter'
 import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import useSWR from 'swr'
+import InfiniteScroll from '../src/components/infiniteScroll/InfiniteScroll'
 
 const NotesFavorites = styled.div`
   display: flex;
@@ -54,11 +55,16 @@ const StyleNotFavorite = styled.span`
 const fetcher = (url) => axios.get(url).then((res) => res.data)
 
 function HomePage() {
-  const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/notes`, fetcher)
+  const [perPage, setPerPage] = useState(3)
+  const { data } = useSWR(
+    () => `${process.env.NEXT_PUBLIC_API_URL}/api/notes?page=${page}&perPage=${perPage}`,
+    fetcher
+  )
   const [filteredNotes, setFilteredNotes] = useState([])
   const [notes, setNotes] = useState([])
   const [isFavorite, setIsFavorite] = useState([])
   const favoritesRef = useRef(null)
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
     if (data) {
@@ -66,6 +72,15 @@ function HomePage() {
       setFilteredNotes(data)
     }
   }, [data])
+
+  const fetchMoreNotes = async () => {
+    setPage(page + 1)
+    setPerPage(perPage + 3)
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/notes?page=${page}&perPage=${perPage}`
+    const moreNotes = await fetcher(url)
+    setNotes([...notes, ...moreNotes])
+    setFilteredNotes([...filteredNotes, ...moreNotes])
+  }
 
   const updatedColors = [
     { hex: '#bae2ff', name: 'azul' },
@@ -114,6 +129,7 @@ function HomePage() {
     setIsFavorite((prevIsFavorite) => prevIsFavorite.filter((element) => element !== id))
     favoritesRef.current.scrollIntoView({ behavior: 'smooth' })
   }
+
   return (
     <>
       <StyledDiv>
@@ -124,7 +140,7 @@ function HomePage() {
       <StyleFavorite ref={favoritesRef}>Favoritas:</StyleFavorite>
       <NotesFavorites>
         {filteredNotes
-          ?.filter(({ _id }) => isFavorite.find((id) => id === _id))
+          ?.filter(({ _id }) => isFavorite.find((id) => id === _id) !== undefined)
           .map((note) => (
             <Notes
               key={note._id}
@@ -155,6 +171,7 @@ function HomePage() {
               }}
             />
           ))}
+        <button onClick={fetchMoreNotes}>Carregar</button>
       </NotesNotFavorites>
     </>
   )

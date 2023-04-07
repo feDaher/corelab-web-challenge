@@ -18,10 +18,21 @@ handler
       return res.status(500).send(err.message)
     }
   })
-  .get(async (req, res) => {
+  .get('/api/notes', async (req, res) => {
+    const { page, perPage, lazy } = req.query
+    console.log(req.query)
     try {
-      const notes = await getNotes()
-      res.status(200).send(notes)
+      if (lazy) {
+        const initialNotes = await getNotes(parseInt(page), parseInt(perPage))
+        const fetchMore = async () => {
+          const newNotes = await getNotes(parseInt(page) + 1, parseInt(perPage))
+          return newNotes
+        }
+        res.status(200).send({ initialNotes, fetchMore })
+      } else {
+        const notes = await getNotes(parseInt(page), parseInt(perPage))
+        res.status(200).send(notes)
+      }
     } catch (err) {
       return res.status(500).send(err.message)
     }
