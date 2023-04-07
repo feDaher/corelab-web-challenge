@@ -31,8 +31,8 @@ const NotesNotFavorites = styled.div`
   margin: 0px 30px;
   position: relative;
   align-items: flex-end;
-  margin: 30px;
   gap: 30px;
+  margin-top: 20px;
 `
 const StyledDiv = styled.div`
   display: flex;
@@ -53,6 +53,8 @@ const StyleNotFavorite = styled.span`
   font-weight: bold;
 `
 const Button = styled.button`
+  margin: 0 30px;
+  margin-bottom: 20px;
   padding: 10px 30px;
   border: 1px solid grey;
   border-radius: 5px;
@@ -183,8 +185,8 @@ function HomePage() {
               }}
             />
           ))}
-        <Button onClick={fetchMoreNotes}>Carregar mais tarefas</Button>
       </NotesNotFavorites>
+      <Button onClick={fetchMoreNotes}>Carregar mais tarefas</Button>
     </>
   )
 }
