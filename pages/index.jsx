@@ -6,7 +6,7 @@ import InputFilter from '../src/components/inputs/InputFilter'
 import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import useSWR from 'swr'
-//import InfiniteScroll from '../src/components/infiniteScroll/InfiniteScroll'
+import InfiniteScroll from '../src/components/infiniteScroll/InfiniteScroll'
 
 const NotesFavorites = styled.div`
   display: flex;
@@ -42,7 +42,6 @@ const StyledDiv = styled.div`
 `
 const StyleFavorite = styled.span`
   margin-left: 30px;
-  margin-top: 30px;
   font-size: 14px;
   font-weight: bold;
 `
@@ -52,20 +51,7 @@ const StyleNotFavorite = styled.span`
   font-size: 14px;
   font-weight: bold;
 `
-const Button = styled.button`
-  margin: 0 30px;
-  margin-bottom: 20px;
-  padding: 10px 30px;
-  border: 1px solid grey;
-  border-radius: 5px;
-  background-color: white;
-  font-weight: bold;
-  transition: 0.5s ease-in-out;
-  cursor: pointer;
-  :hover {
-    background-color: transparent;
-  }
-`
+
 const fetcher = (url) => axios.get(url).then((res) => res.data)
 
 function HomePage() {
@@ -78,7 +64,8 @@ function HomePage() {
   const [notes, setNotes] = useState([])
   const [isFavorite, setIsFavorite] = useState([])
   const favoritesRef = useRef(null)
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(0)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     if (data) {
@@ -88,12 +75,22 @@ function HomePage() {
   }, [data])
 
   const fetchMoreNotes = async () => {
-    setPage(page + 1)
-    setPerPage(perPage + 3)
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/notes?page=${page}&perPage=${perPage}`
+    setIsLoading(true)
+    const newPage = page + 1
+    const newPerPage = perPage
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/notes?page=${newPage}&perPage=${newPerPage}`
     const moreNotes = await fetcher(url)
     setNotes([...notes, ...moreNotes])
     setFilteredNotes([...filteredNotes, ...moreNotes])
+    console.log(notes)
+    console.log(moreNotes.length === 0)
+    if (moreNotes.length === 0) {
+      setPerPage(null)
+    } else if (moreNotes) {
+      setPage(newPage)
+      setPerPage(newPerPage)
+      setIsLoading(false)
+    }
   }
 
   const updatedColors = [
@@ -186,7 +183,8 @@ function HomePage() {
             />
           ))}
       </NotesNotFavorites>
-      <Button onClick={fetchMoreNotes}>Carregar mais tarefas</Button>
+      {isLoading && perPage !== null && <div>Carregando...</div>}
+      {!isLoading && <InfiniteScroll fetchMore={fetchMoreNotes} />}
     </>
   )
 }

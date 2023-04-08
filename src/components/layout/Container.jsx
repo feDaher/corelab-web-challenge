@@ -22,10 +22,12 @@ const StyledContainer = styled.div`
   @media (max-width: 770px) {
     max-width: 400px;
     border-radius: 25px;
+    margin-bottom: 20px;
   }
   @media (max-width: 545px) {
     max-width: 350px;
     border-radius: 25px;
+    margin-bottom: 20px;
   }
   @media (max-width: 380px) {
     max-width: 300px;

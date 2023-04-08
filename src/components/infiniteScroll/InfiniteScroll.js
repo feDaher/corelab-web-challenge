@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-const InfiniteScroll = ({ fetcherMore }) => {
+const InfiniteScroll = ({ fetchMore }) => {
   const divRef = useRef()
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const InfiniteScroll = ({ fetcherMore }) => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         observer.disconnect()
-        fetcherMore()
+        fetchMore()
       }
     }, options)
     observer.observe(divRef.current)
